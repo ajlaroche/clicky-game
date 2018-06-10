@@ -1,0 +1,23 @@
+.header {
+  background: #272e4f;
+  height: 100px;
+   position: fixed;
+  width: 100%;
+  z-index: 99;
+}
+
+.header h1 {
+  margin: 0;
+  padding-top: 1rem;
+  text-align: center;
+  color: #f2f2f0;
+  font-size: 2.5rem;
+}
+
+.nav-item {
+  width: 33.3%;
+}
+
+.nav {
+  width: 100%;
+}
