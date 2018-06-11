@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
+This app is a game that will test your memory.  Upon starting the app, 12 pictures will appear and you can start the game by clicking ona picture.  
+
+The goal of the game is click on as many pictures as possible without clicking on the same picture twice.  Your score will increase as you click on pictures once and your top score will be recorded.
+
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
