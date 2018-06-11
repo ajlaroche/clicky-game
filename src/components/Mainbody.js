@@ -26,7 +26,8 @@ class MainBody extends React.Component {
         clickedImages: [],
         score: 0,
         topscore: 0,
-        randomImage: shuffle(images)
+        randomImage: shuffle(images),
+        feedback: "Click an Image to Begin!"
     };
 
     userClick = (selectedImage) => {
@@ -49,6 +50,7 @@ class MainBody extends React.Component {
             this.setState(
                 {
                     randomImage: shuffle(images),
+                    feedback: "You lost, Start Over!",
                     score: 0,
                     clickedImages: []  //clear array that was keeping track of clicked images
                 }, () => {
@@ -66,6 +68,7 @@ class MainBody extends React.Component {
                 this.setState(
                     {
                         randomImage: shuffle(images),
+                        feedback: "You Chose Wisely! Keep Going",
                         score: this.state.score + 1,
                         topscore: this.state.topscore + 1,
                         clickedImages: [...this.state.clickedImages, found.id]  //similar to push method for adding element to array
@@ -77,6 +80,7 @@ class MainBody extends React.Component {
                 this.setState(
                     {
                         randomImage: shuffle(images),
+                        feedback: "You Chose Wisely! Keep Going",
                         score: this.state.score + 1,
                         clickedImages: [...this.state.clickedImages, found.id]
                     }, () => {
@@ -96,7 +100,7 @@ class MainBody extends React.Component {
                             <h1>Clicky Game</h1>
                         </li>
                         <li className="nav-item">
-                            <h1>Click an Image to Begin!</h1>
+                            <h1>{this.state.feedback}</h1>
                         </li>
                         <li className="nav-item">
                             <h1>Score: {this.state.score} | Top Score: {this.state.topscore}</h1>
