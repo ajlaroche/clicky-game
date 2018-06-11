@@ -33,19 +33,28 @@ class MainBody extends React.Component {
     userClick = (selectedImage) => {
 
 
+
         const found = images.find((element) => {
             return element.id === selectedImage.id;
         });
 
         //If image has already been clicked, reset all clicked properties to false and score to zero
-        if (found.clicked) {
+
+        if (this.state.score === 11) {
+            console.log("you won!")
+            resetImages(this.state.clickedImages);
+            this.setState(
+                {
+                    feedback: "You Completed a Round!",
+                    randomImage: shuffle(images),
+                    score: this.state.score + 1,
+                    topscore: this.state.topscore + 1,
+                    clickedImages: []
+                }
+            );
+        } else if (found.clicked) {
             console.log("You've already clicked this image");
-            this.state.clickedImages.forEach((element) => {
-                let temp = images.find((item) => {
-                    return item.id === element;
-                });
-                temp.clicked = false;
-            });
+            resetImages(this.state.clickedImages);
 
             this.setState(
                 {
@@ -64,7 +73,7 @@ class MainBody extends React.Component {
 
             console.log(found);
 
-            if (this.state.score === this.state.topscore) {
+            if (this.state.score === this.state.topscore && this.state.score !== 11) {
                 this.setState(
                     {
                         randomImage: shuffle(images),
@@ -84,6 +93,7 @@ class MainBody extends React.Component {
                         score: this.state.score + 1,
                         clickedImages: [...this.state.clickedImages, found.id]
                     }, () => {
+
                         console.log(this.state.clickedImages);
                         console.log(this.state.score, this.state.topscore);
                     });
@@ -125,7 +135,7 @@ class MainBody extends React.Component {
 
                 </div>
                 <footer className="footer">
-                    <span className="footerText"><img className="footerImage" src="./favicon.ico" alt="React Icon"/>   Clicky Game</span>
+                    <span className="footerText"><img className="footerImage" src="./favicon.ico" alt="React Icon" />   Clicky Game</span>
                 </footer>
             </div >
         )
@@ -144,6 +154,16 @@ function shuffle(arr) {
     }
     return arr;
 
+};
+
+//Function to reset click property of all images
+function resetImages(arr) {
+    arr.forEach((element) => {
+        let temp = images.find((item) => {
+            return item.id === element;
+        });
+        temp.clicked = false;
+    });
 };
 
 
